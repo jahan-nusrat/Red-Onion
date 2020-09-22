@@ -28,11 +28,11 @@ const FoodItem = () => {
 	};
 
 	const increaseCount = () => {
-		setCounter(counter + 1);
+		setCounter(parseInt(counter )+ 1);
 	};
 
 	const decreaseCount = () => {
-		setCounter(counter - 1);
+		setCounter(parseInt(counter) - 1);
 		if (counter === 1) {
 			setCounter(1);
 		}
@@ -46,6 +46,13 @@ const FoodItem = () => {
 		});
 	};
 
+	const inputHandler=(e)=>{
+		setCounter(e.target.value)
+		if(e.target.value===1){
+			setCounter(1)
+		}
+	}
+
 	const handleImgClick = () => {
 		setSelectedItem(menu.food);
 		history.replace(`/${menu.food.id}/${slug}`);
@@ -53,11 +60,12 @@ const FoodItem = () => {
 
 	useEffect(
 		() => {
-			const filterItem = items.find((food) => food.id === parseInt(id));
+			const filterItem = items?.find((food) => food?.id === parseInt(id));
 			setSelectedItem(filterItem);
 		},
 		[ id, items ]
 	);
+	console.log(selectedItem);
 
 	return (
 		<SingleItem className="container single-item mt-5">
@@ -66,12 +74,16 @@ const FoodItem = () => {
 					<h1>{selectedItem.name}</h1>
 					<p>{selectedItem.info}</p>
 					<div className="cart-item">
-						<h2>${(selectedItem.price * counter).toFixed(2)}</h2>
+						<h2>$ {(selectedItem.price * counter).toFixed(2)}
 						<span>
-							<FaMinus onClick={decreaseCount} className="fa-icon minus" /> {counter}{' '}
+							<FaMinus onClick={decreaseCount} className="fa-icon minus" />
+							<input type="number" onChange={inputHandler} value={counter} />
 							<FaPlus onClick={increaseCount} className="fa-icon plus" />
 						</span>
+						</h2>
+						
 					</div>
+
 
 					<button className="btn btn-custom px-4">
 						<FaShoppingCart className="fa-cart" /> Add
@@ -94,6 +106,7 @@ const FoodItem = () => {
 				<div className="col-lg-5">
 					<img src={selectedItem.img} alt={selectedItem.name} className="img-fluid item-img" />
 				</div>
+				
 			</div>
 		</SingleItem>
 	);

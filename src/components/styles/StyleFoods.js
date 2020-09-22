@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SingleItem = styled.div`
 	font-family: 'Montserrat', sans-serif;
 	transition: all 0.4s linear;
+
 	.item-img {
 		height: 440px;
 		width: 440px;
@@ -22,22 +23,29 @@ export const SingleItem = styled.div`
 		h2 {
 			font-family: 'Bebas Neue', cursive;
 			letter-spacing: 2px;
-		}
-		span {
-			position: absolute;
-			top: 0;
-			left: 20%;
-			border: 1px solid #bbbbbb;
-			padding: 0.5rem 1rem;
-			border-radius: 30px;
-		}
-		.fa-icon {
-			margin: 0 0.8rem;
-			cursor: pointer;
-			font-family: 'Montserrat', sans-serif;
-		}
-		.plus {
-			color: #f91944;
+			span {
+				position: absolute;
+
+				left: 30%;
+				border: 1px solid #bbbbbb;
+				padding: 0.5rem;
+				border-radius: 30px;
+				font-size: 1rem;
+			}
+			input {
+				text-align: center;
+				font-size: 1.2rem;
+				width: 60px;
+				border: 1px solid transparent;
+			}
+			.fa-icon {
+				margin: 0 0.8rem;
+				cursor: pointer;
+				font-family: 'Montserrat', sans-serif;
+			}
+			.plus {
+				color: #f91944;
+			}
 		}
 	}
 	.btn-custom {
@@ -51,7 +59,7 @@ export const SingleItem = styled.div`
 		}
 	}
 	.sub-menu {
-		margin-top: 1.5rem;
+		margin: 2rem;
 		height: 150px;
 		width: 445px;
 		.single-img {
