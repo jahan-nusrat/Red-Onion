@@ -2,11 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { FaShoppingCart, FaPlus, FaMinus, FaAngleRight, FaAngleLeft } from 'react-icons/fa';
+import { useDispatch} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { SingleItem } from '../components/styles/StyleFoods';
 import foodData from '../fakeData/data';
+import { addToCart } from '../redux/actions';
 
 const FoodItem = () => {
+	const dispatch= useDispatch();
 	const history = useHistory();
 	let { slug, id } = useParams();
 	const [ selectedItem, setSelectedItem ] = useState({});
@@ -18,8 +21,6 @@ const FoodItem = () => {
 		foods : items,
 		food  : items[0]
 	});
-
-	console.log(counter)
 
 	const prevBtn = () => {
 		const id = menu.food.id - 1;
@@ -67,7 +68,10 @@ const FoodItem = () => {
 		},
 		[ id, items ]
 	);
-	console.log(selectedItem);
+
+	const handleCart=()=>{
+		dispatch(addToCart(selectedItem.id))
+	}
 
 	return (
 		<SingleItem className="container single-item mt-5">
@@ -87,7 +91,7 @@ const FoodItem = () => {
 					</div>
 
 
-					<button className="btn btn-custom px-4">
+					<button className="btn btn-custom px-4" onClick={handleCart}>
 						<FaShoppingCart className="fa-cart" /> Add
 					</button>
 					<div className="sub-menu text-center">

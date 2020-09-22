@@ -7,6 +7,15 @@ export const Items = styled.nav`
 		width: 150px;
 		object-fit: contain;
 	}
+	.shopping-cart {
+		position: relative;
+		span {
+			position: absolute;
+			top: 3px;
+			right: 5px;
+			color: #f91944;
+		}
+	}
 	.items {
 		ul {
 			li {
@@ -24,6 +33,7 @@ export const Items = styled.nav`
 						color: #ffffff;
 					}
 				}
+
 				.cart {
 					color: #f91944;
 					font-size: 1.2rem;

@@ -3,8 +3,10 @@ import logo from '../../Image/logo2.png';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Items } from '../styles/StyleNav';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+	const cartQuantity = useSelector((state) => state.cart);
 	return (
 		<Items className="container nav-box">
 			<div className="row justify-content-between align-items-center">
@@ -15,9 +17,12 @@ const NavBar = () => {
 				</div>
 				<div className="items col-md-5 ">
 					<ul className="nav justify-content-end">
-						<li>
+						<li className="shopping-cart">
 							<Link to="/cart">
-								<FaShoppingCart className="cart" />
+								<FaShoppingCart className="cart" />{' '}
+								<span>
+									<strong>{cartQuantity.length}</strong>
+								</span>
 							</Link>
 						</li>
 						<li>
