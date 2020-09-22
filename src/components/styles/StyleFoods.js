@@ -67,3 +67,34 @@ export const SingleItem = styled.div`
 		}
 	}
 `;
+
+export const BtnStyle = styled.div`
+	font-family: 'Bebas Neue', cursive;
+
+	button {
+		font-size: 1.2rem;
+		letter-spacing: 1.5px;
+		&:focus {
+			box-shadow: 0 0 0 0 transparent;
+		}
+	}
+	.btn {
+		margin: 2rem auto;
+		border-radius: 0px;
+	}
+	.active-0 .breakfast {
+		color: #f91944;
+		border-bottom: 2px solid #f91944;
+		transition: all 0.3s linear;
+	}
+	.active-1 .lunch {
+		color: #f91944;
+		border-bottom: 2px solid #f91944;
+		transition: all 0.3s linear;
+	}
+	.active-2 .dinner {
+		color: #f91944;
+		border-bottom: 2px solid #f91944;
+		transition: all 0.3s linear;
+	}
+`;

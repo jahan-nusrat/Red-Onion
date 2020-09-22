@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import food from '../../fakeData/data';
+import { BtnStyle } from '../styles/StyleFoods';
 import Menu from './Menu';
 
 const Foods = () => {
@@ -11,6 +12,8 @@ const Foods = () => {
 		property : food[0],
 		slug     : 'breakfast'
 	});
+
+	console.log(showItems,item)
 
 	useEffect(
 		() => {
@@ -34,15 +37,15 @@ const Foods = () => {
 	};
 
 	return (
-		<div className="container">
-			<div className="btn-type text-center">
-				<button onClick={handleClick} className="btn btn-success mx-3">
+		<BtnStyle className="container">
+			<div className={ `btn-type text-center active-${showItems.property.id}`}>
+				<button onClick={handleClick} className="btn mx-3 breakfast">
 					Breakfast
 				</button>
-				<button onClick={handleClick} className="btn btn-success mx-3">
+				<button onClick={handleClick} className="btn mx-3 lunch">
 					Lunch
 				</button>
-				<button onClick={handleClick} className="btn btn-success mx-3">
+				<button onClick={handleClick} className="btn mx-3 dinner">
 					Dinner
 				</button>
 			</div>
@@ -51,7 +54,7 @@ const Foods = () => {
 					return <Menu key={food.id} food={food} slug={item[0]?.slug} />;
 				})}
 			</div>
-		</div>
+		</BtnStyle>
 	);
 };
 
