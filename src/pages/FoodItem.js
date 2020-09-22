@@ -19,6 +19,8 @@ const FoodItem = () => {
 		food  : items[0]
 	});
 
+	console.log(counter)
+
 	const prevBtn = () => {
 		const id = menu.food.id - 1;
 		setMenu({

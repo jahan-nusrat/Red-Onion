@@ -13,8 +13,6 @@ const Foods = () => {
 		slug     : 'breakfast'
 	});
 
-	console.log(showItems,item)
-
 	useEffect(
 		() => {
 			let foods = food.filter((item) => {
