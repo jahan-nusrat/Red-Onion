@@ -1,4 +1,5 @@
-export const ADD_CART = 'ADD_CART'
+export const ADD_CART = 'ADD_CART';
+export const DELIVERY_INFO = 'DELIVERY_INFO';
 
 export const addToCart = (id, quantity, slug, img, name, price) => {
     return {
@@ -11,5 +12,12 @@ export const addToCart = (id, quantity, slug, img, name, price) => {
             name,
             price
         }
+    }
+}
+
+export const deliveryDetails = (info) => {
+    return {
+        type: DELIVERY_INFO,
+        payload: info
     }
 }
