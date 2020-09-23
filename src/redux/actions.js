@@ -1,8 +1,15 @@
 export const ADD_CART = 'ADD_CART'
 
-export const addToCart = (id) => {
+export const addToCart = (id, quantity, slug, img, name, price) => {
     return {
         type: ADD_CART,
-        id
+        payload: {
+            id,
+            quantity,
+            slug,
+            img,
+            name,
+            price
+        }
     }
 }

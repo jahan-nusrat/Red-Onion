@@ -5,13 +5,11 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-	console.log(state);
-	console.log(action);
 	switch (action.type) {
 		case ADD_CART:
 			return {
 				...state,
-				cart : [ ...state.cart, action.id ]
+				cart : [ ...state.cart, action.payload ]
 			};
 		default:
 			return state;

@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import Home from './pages/Home';
-import Cart from './pages/Cart';
 import LogIn from './pages/LogIn';
+import Cart from './pages/cart/Cart';
 import SignUp from './pages/SignUp';
 import FoodItem from './pages/FoodItem';
 import { createContext } from 'react';

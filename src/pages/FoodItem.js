@@ -7,6 +7,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { SingleItem } from '../components/styles/StyleFoods';
 import foodData from '../fakeData/data';
 import { addToCart } from '../redux/actions';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const FoodItem = () => {
 	const dispatch= useDispatch();
@@ -14,7 +16,6 @@ const FoodItem = () => {
 	let { slug, id } = useParams();
 	const [ selectedItem, setSelectedItem ] = useState({});
 	const [ counter, setCounter ] = useState(1);
-
 	let selectedFood = foodData.find((food) => food.slug === slug);
 	const { items } = selectedFood;
 	const [ menu, setMenu ] = useState({
@@ -69,8 +70,9 @@ const FoodItem = () => {
 		[ id, items ]
 	);
 
-	const handleCart=()=>{
-		dispatch(addToCart(selectedItem.id))
+	const handleCart=(id, quantity, slug, img, name, price)=>{
+		dispatch(addToCart(id, quantity, slug, img, name, price))
+		toast.info("Items Added to Cart")
 	}
 
 	return (
@@ -87,13 +89,22 @@ const FoodItem = () => {
 							<FaPlus onClick={increaseCount} className="fa-icon plus" />
 						</span>
 						</h2>
-						
 					</div>
 
-
-					<button className="btn btn-custom px-4" onClick={handleCart}>
+					<button className="btn btn-custom px-4" onClick={()=>handleCart(selectedItem.id, counter, slug, selectedItem.img, selectedItem.name, selectedItem.price)}>
 						<FaShoppingCart className="fa-cart" /> Add
 					</button>
+					<ToastContainer 
+						position="top-center"
+						autoClose={2000}
+						hideProgressBar={false}
+						newestOnTop={false}
+						closeOnClick
+						rtl={false}
+						pauseOnFocusLoss
+						draggable
+						pauseOnHover>
+					</ToastContainer>
 					<div className="sub-menu text-center">
 						<button className="btn" onClick={prevBtn} disabled={menu.food.id === 0}>
 							<FaAngleLeft className="fa-angle" />
