@@ -5,7 +5,7 @@ import { CardBox } from '../styles/StyleMenu';
 const Menu = ({ food, slug }) => {
 	const { img, name, title, price, id } = food;
 	return (
-		<CardBox className="card-box col-lg-4">
+		<CardBox className={`card-box col-lg-4 active-box-${slug}`}>
 			<Link to={`/${id}/${slug}`}>
 				<div className="card">
 					<div className="card-body text-center">

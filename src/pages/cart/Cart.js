@@ -7,7 +7,6 @@ import CartItems from './CartItems';
 
 const Cart = () => {
 	const cartFoods = useSelector((state) => state.cart);
-	console.log(cartFoods);
 	const dispatch = useDispatch();
 	const [ isDelivery, setIsDelivery ] = useState(false);
 	const [ delivery, setDelivery ] = useState({
@@ -143,7 +142,9 @@ const Cart = () => {
 							</div>
 						</div>
 					) : (
-						<p style={{ color: '#F9204A', fontWeight: 'bold', fontSize: '1.5rem' }}>No foods in the cart</p>
+						<p style={{ color: '#F9204A', fontWeight: 'bold', fontSize: '1.5rem', textAlign: 'center' }}>
+							No foods in the cart
+						</p>
 					)}
 					<div className="price-details">
 						<ul className="list-group">

@@ -1,11 +1,14 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import food from '../../fakeData/data';
 import { BtnStyle } from '../styles/StyleFoods';
+import { RowStyle } from '../styles/StyleMenu';
 import Menu from './Menu';
 
 const Foods = () => {
+	const cartFoods= useSelector(state=>state.cart)
 	const [ item, setItems ] = useState({});
 	const [ showItems, setShowItems ] = useState({
 		type     : 'Breakfast',
@@ -47,10 +50,13 @@ const Foods = () => {
 					Dinner
 				</button>
 			</div>
-			<div className="row">
+			<div className={`row active-item-${showItems.property.id}`}>
 				{item[0]?.items.map((food) => {
 					return <Menu key={food.id} food={food} slug={item[0]?.slug} />;
 				})}
+			</div>
+			<div className="checkout">
+				<button className="btn checkout-btn" disabled={cartFoods.length===0}>Checkout Your Food</button>
 			</div>
 		</BtnStyle>
 	);

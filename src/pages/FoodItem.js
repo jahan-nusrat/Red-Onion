@@ -130,6 +130,3 @@ const FoodItem = () => {
 };
 
 export default FoodItem;
-
-//history.replace('<new_route>')
-//history.push(yourUpdatedUrl);

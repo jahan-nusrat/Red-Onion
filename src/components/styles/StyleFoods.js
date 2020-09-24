@@ -105,4 +105,13 @@ export const BtnStyle = styled.div`
 		border-bottom: 2px solid #f91944;
 		transition: all 0.3s linear;
 	}
+	.checkout {
+		text-align: center;
+		.checkout-btn {
+			width: 250px;
+			border-radius: 5px;
+			background-color: #797979;
+			color: #ffffff;
+		}
+	}
 `;
