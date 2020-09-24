@@ -72,7 +72,16 @@ export const CartSection = styled.div`
 	font-family: 'Montserrat', sans-serif;
 	.cart-content {
 		padding: 3rem 0;
-
+		.cart-items {
+			.clear {
+				background-color: #f91944;
+				width: 60%;
+				display: block;
+				margin: 1.5rem auto;
+				font-size: 0.9rem;
+				color: #ffffff;
+			}
+		}
 		.form-info {
 			.form-control {
 				background-color: #f5f5f5;

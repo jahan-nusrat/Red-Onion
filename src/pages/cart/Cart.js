@@ -2,11 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CartSection } from '../../components/styles/StyleCart';
-import { deliveryDetails } from '../../redux/actions';
+import { clearCart, deliveryDetails } from '../../redux/actions';
 import CartItems from './CartItems';
 
 const Cart = () => {
 	const cartFoods = useSelector((state) => state.cart);
+	console.log(cartFoods);
 	const dispatch = useDispatch();
 	const [ isDelivery, setIsDelivery ] = useState(false);
 	const [ delivery, setDelivery ] = useState({
@@ -28,6 +29,10 @@ const Cart = () => {
 		e.preventDefault();
 		setIsDelivery(true);
 		dispatch(deliveryDetails(delivery));
+	};
+
+	const clearCartHandler = () => {
+		dispatch(clearCart());
 	};
 
 	//Total, Subtotal, Tax, Delivery Fee
@@ -131,6 +136,11 @@ const Cart = () => {
 							{cartFoods.map((food) => {
 								return <CartItems key={food.id} food={food} />;
 							})}
+							<div>
+								<button onClick={clearCartHandler} className="clear btn">
+									Clear Cart
+								</button>
+							</div>
 						</div>
 					) : (
 						<p style={{ color: '#F9204A', fontWeight: 'bold', fontSize: '1.5rem' }}>No foods in the cart</p>

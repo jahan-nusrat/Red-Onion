@@ -1,4 +1,4 @@
-const { ADD_CART, DELIVERY_INFO, INCREASE_AMOUNT, DECREASE_AMOUNT, REMOVE_CART } = require('./actions');
+const { ADD_CART, DELIVERY_INFO, INCREASE_AMOUNT, DECREASE_AMOUNT, REMOVE_CART, CLEAR_CART } = require('./actions');
 
 const initialState = {
 	cart     : [],
@@ -19,6 +19,11 @@ const reducer = (state = initialState, action) => {
 			});
 			return {
 				cart : [ ...filterId ]
+			};
+
+		case CLEAR_CART:
+			return {
+				cart : []
 			};
 
 		case DELIVERY_INFO:

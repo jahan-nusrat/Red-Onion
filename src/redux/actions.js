@@ -2,7 +2,8 @@ export const ADD_CART = 'ADD_CART';
 export const DELIVERY_INFO = 'DELIVERY_INFO';
 export const INCREASE_AMOUNT = 'INCREASE_AMOUNT';
 export const DECREASE_AMOUNT = 'DECREASE_AMOUNT'
-export const REMOVE_CART = 'REMOVE_CART'
+export const REMOVE_CART = 'REMOVE_CART';
+export const CLEAR_CART = 'CLEAR_CART';
 
 export const addToCart = (id, quantity, slug, img, name, price) => {
     return {
@@ -22,6 +23,12 @@ export const removeFromCart = (id) => {
     return {
         type: REMOVE_CART,
         id
+    }
+}
+
+export const clearCart = () => {
+    return {
+        type: CLEAR_CART
     }
 }
 
