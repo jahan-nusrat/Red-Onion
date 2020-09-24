@@ -29,10 +29,10 @@ export const SingleProduct = styled.div`
 		}
 	}
 	.single-quantity {
+		position: relative;
 		width: 100px;
 		input {
 			width: 40px;
-			margin: 0 0.5rem;
 		}
 		.fa-icon {
 			font-size: 0.9rem;
@@ -41,6 +41,48 @@ export const SingleProduct = styled.div`
 		}
 		.plus {
 			color: #f91944;
+		}
+	}
+	.price-details {
+		.list-group {
+			.list-group-item {
+				padding: 0.4rem 1rem !important;
+				font-size: 4rem;
+			}
+		}
+	}
+`;
+
+export const CartSection = styled.div`
+	font-family: 'Montserrat', sans-serif;
+	.cart-content {
+		padding: 3rem 0;
+		.form-info {
+			.form-control {
+				background-color: #f5f5f5;
+				font-size: 0.9rem;
+				border: 1px solid transparent;
+			}
+			.btn-save {
+				width: 100%;
+				background-color: #f91944;
+				font-size: 0.9rem;
+				color: #ffffff;
+			}
+		}
+		.price-details {
+			.list-group {
+				.list-group-item {
+					font-size: 0.95rem;
+					padding: 0.4rem 1rem !important;
+				}
+			}
+		}
+		.btn-place {
+			margin: 1rem 0;
+			width: 100%;
+			background-color: #666666;
+			color: #ffffff;
 		}
 	}
 `;

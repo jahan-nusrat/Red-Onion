@@ -1,13 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CartSection } from '../../components/styles/StyleCart';
 import { deliveryDetails } from '../../redux/actions';
 import CartItems from './CartItems';
 
 const Cart = () => {
 	const cartFoods = useSelector((state) => state.cart);
-	const deliveryInfo = useSelector((state) => state.delivery);
-	console.log(cartFoods);
 	const dispatch = useDispatch();
 	const [ isDelivery, setIsDelivery ] = useState(false);
 	const [ delivery, setDelivery ] = useState({
@@ -30,10 +29,24 @@ const Cart = () => {
 		setIsDelivery(true);
 		dispatch(deliveryDetails(delivery));
 	};
+
+	//Total, Subtotal, Tax, Delivery Fee
+	let subtotal = cartFoods.reduce((acc, curr) => {
+		return acc + curr.price * curr.quantity;
+	}, 0);
+
+	let totalQuantity = cartFoods.reduce((acc, curr) => {
+		return acc + curr.quantity;
+	}, 0);
+
+	let tax = subtotal / 100 * 5;
+	const deliveryFee = cartFoods.length * 60;
+	const total = subtotal + tax + deliveryFee;
+
 	return (
-		<div className="container cart-section">
-			<div className="row justify-content-around align-items-center">
-				<div className="col-lg-5">
+		<CartSection className="container cart-section">
+			<div className="row justify-content-around cart-content">
+				<div className="col-lg-5 form-info">
 					<form onSubmit={handleForm}>
 						<h4>Edit Delivery Details</h4>
 						<hr />
@@ -83,28 +96,35 @@ const Cart = () => {
 						</div>
 						<div className="form-group">
 							<textarea
+								className="form-control"
 								name="instruction"
-								cols="60"
-								rows="8"
+								cols="47"
+								rows="4"
 								placeholder="Add delivery instruction"
 								onChange={handleInput}
 								value={delivery.instruction}
 								required
 							/>
 						</div>
-						<button type="submit" className="btn btn-primary">
+						<button type="submit" className="btn btn-save">
 							Save & Continue
 						</button>
 					</form>
 				</div>
 				<div className="col-lg-5">
-					<div className="address-details">
-						<h6>
-							From <strong>Gulshan Plaza Restaurant GPR</strong>
-						</h6>
-						<p>Arriving in 20-30 min</p>
-						{deliveryInfo.road && <p>{deliveryInfo.road}</p>}
-					</div>
+					{cartFoods.length >= 1 && (
+						<div className="address-details">
+							<h6>
+								From <strong>Gulshan Plaza Restaurant GPR</strong>
+							</h6>
+							<p>Arriving in 20-30 min</p>
+							{isDelivery && (
+								<p>
+									<strong>To: {delivery.road}</strong>
+								</p>
+							)}
+						</div>
+					)}
 
 					{cartFoods.length >= 1 ? (
 						<div className="cart-items">
@@ -113,11 +133,44 @@ const Cart = () => {
 							})}
 						</div>
 					) : (
-						<p>No foods in the cart</p>
+						<p style={{ color: '#F9204A', fontWeight: 'bold', fontSize: '1.5rem' }}>No foods in the cart</p>
+					)}
+					<div className="price-details">
+						<ul className="list-group">
+							<li className="list-group-item d-flex justify-content-between align-items-center">
+								Subtotal: {totalQuantity} item
+								<span>
+									<strong>${subtotal.toFixed(2)}</strong>{' '}
+								</span>
+							</li>
+							<li className="list-group-item d-flex justify-content-between align-items-center">
+								Tax
+								<span>
+									<strong>${tax.toFixed(2)}</strong>{' '}
+								</span>
+							</li>
+							<li className="list-group-item d-flex justify-content-between align-items-center">
+								Delivery Fee
+								<span>
+									<strong>${deliveryFee}</strong>
+								</span>
+							</li>
+							<li className="list-group-item d-flex justify-content-between align-items-center">
+								Total
+								<span>
+									<strong>${total.toFixed(2)}</strong>{' '}
+								</span>
+							</li>
+						</ul>
+					</div>
+					{cartFoods.length >= 1 && (
+						<button className="btn btn-place" disabled={!isDelivery}>
+							Place Order
+						</button>
 					)}
 				</div>
 			</div>
-		</div>
+		</CartSection>
 	);
 };
 

@@ -70,8 +70,8 @@ const FoodItem = () => {
 		[ id, items ]
 	);
 
-	const handleCart=(id, quantity, slug, img, name, price)=>{
-		dispatch(addToCart(id, quantity, slug, img, name, price))
+	const handleCart=()=>{
+		dispatch(addToCart(selectedItem.id, counter, slug, selectedItem.img, selectedItem.name, selectedItem.price))
 		toast.info("Items Added to Cart")
 	}
 
@@ -91,7 +91,7 @@ const FoodItem = () => {
 						</h2>
 					</div>
 
-					<button className="btn btn-custom px-4" onClick={()=>handleCart(selectedItem.id, counter, slug, selectedItem.img, selectedItem.name, selectedItem.price)}>
+					<button className="btn btn-custom px-4" onClick={handleCart}>
 						<FaShoppingCart className="fa-cart" /> Add
 					</button>
 					<ToastContainer 

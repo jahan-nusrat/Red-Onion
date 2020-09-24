@@ -5,36 +5,30 @@ import LogIn from './pages/LogIn';
 import Cart from './pages/cart/Cart';
 import SignUp from './pages/SignUp';
 import FoodItem from './pages/FoodItem';
-import { createContext } from 'react';
-import { useState } from 'react';
 import NavBar from './components/Nav/NavBar';
 
-export const UserContext = createContext();
 const App = () => {
-	const [ selected, setSelected ] = useState({});
 	return (
-		<UserContext.Provider value={[ selected, setSelected ]}>
-			<Router>
-				<NavBar />
-				<Switch>
-					<Route exact path="/">
-						<Home />
-					</Route>
-					<Route path="/:id/:slug">
-						<FoodItem />
-					</Route>
-					<Route path="/cart">
-						<Cart />
-					</Route>
-					<Route path="/login">
-						<LogIn />
-					</Route>
-					<Route path="/signup">
-						<SignUp />
-					</Route>
-				</Switch>
-			</Router>
-		</UserContext.Provider>
+		<Router>
+			<NavBar />
+			<Switch>
+				<Route exact path="/">
+					<Home />
+				</Route>
+				<Route path="/:id/:slug">
+					<FoodItem />
+				</Route>
+				<Route path="/cart">
+					<Cart />
+				</Route>
+				<Route path="/login">
+					<LogIn />
+				</Route>
+				<Route path="/signup">
+					<SignUp />
+				</Route>
+			</Switch>
+		</Router>
 	);
 };
 
