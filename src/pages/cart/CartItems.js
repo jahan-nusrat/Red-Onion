@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { FaPlus, FaMinus } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { FaPlus, FaMinus, FaRegTimesCircle } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import { SingleProduct } from '../../components/styles/StyleCart';
-import { decreaseAmount, increaseAmount } from '../../redux/actions';
+import { decreaseAmount, increaseAmount, removeFromCart } from '../../redux/actions';
 const CartItems = ({ food }) => {
+	const cartFoods = useSelector((state) => state.cart);
+	console.log(cartFoods);
 	const { quantity, img, name, price } = food;
 	const [ value, setValue ] = useState(quantity);
 	const inputHandler = (e) => {
@@ -29,13 +31,24 @@ const CartItems = ({ food }) => {
 		}
 	};
 
+	const removeHandle = () => {
+		dispatch(removeFromCart(food.id));
+	};
+
+	function truncate (str, n) {
+		return str.length > n ? str.substr(0, n - 1) + '....' : str;
+	}
+
 	return (
 		<SingleProduct className="single-item d-flex align-items-center">
+			<button className="btn btn-close">
+				<FaRegTimesCircle onClick={removeHandle} className="close" />
+			</button>
 			<div className="single-item-img">
 				<img src={img} alt={name} className="img-fluid single-img" />
 			</div>
 			<div className="single-item-detail">
-				<h5>{name}</h5>
+				<h5>{truncate(name, 20)}</h5>
 				<h4>
 					<strong>${(price * value).toFixed(2)}</strong>
 				</h4>

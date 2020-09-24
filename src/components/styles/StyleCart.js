@@ -6,6 +6,22 @@ export const SingleProduct = styled.div`
 	padding: 0.3rem 0.8rem;
 	border-radius: 10px;
 	margin: 1.2rem 0;
+	position: relative;
+	.btn-close {
+		position: absolute;
+		top: -3px;
+		right: 0;
+		&:focus {
+			box-shadow: 0 0 0 0 transparent;
+		}
+		.close {
+			font-size: 1.2rem;
+			color: #f91944;
+			opacity: 1;
+			box-shadow: 0px 3px 7px 0px #0000004d;
+			border-radius: 50%;
+		}
+	}
 	.single-item-img {
 		width: 100px;
 		.single-img {
@@ -29,7 +45,6 @@ export const SingleProduct = styled.div`
 		}
 	}
 	.single-quantity {
-		position: relative;
 		width: 100px;
 		input {
 			width: 40px;
@@ -57,6 +72,7 @@ export const CartSection = styled.div`
 	font-family: 'Montserrat', sans-serif;
 	.cart-content {
 		padding: 3rem 0;
+
 		.form-info {
 			.form-control {
 				background-color: #f5f5f5;
