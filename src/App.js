@@ -6,6 +6,7 @@ import Cart from './pages/cart/Cart';
 import SignUp from './pages/SignUp';
 import FoodItem from './pages/FoodItem';
 import NavBar from './components/Nav/NavBar';
+import OrderComplete from './pages/order-complete/OrderComplete';
 
 const App = () => {
 	return (
@@ -20,6 +21,9 @@ const App = () => {
 				</Route>
 				<Route path="/cart">
 					<Cart />
+				</Route>
+				<Route path="/complete-order">
+					<OrderComplete />
 				</Route>
 				<Route path="/login">
 					<LogIn />

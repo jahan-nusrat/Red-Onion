@@ -2,12 +2,13 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import food from '../../fakeData/data';
 import { BtnStyle } from '../styles/StyleFoods';
-import { RowStyle } from '../styles/StyleMenu';
 import Menu from './Menu';
 
 const Foods = () => {
+	const history=useHistory()
 	const cartFoods= useSelector(state=>state.cart)
 	const [ item, setItems ] = useState({});
 	const [ showItems, setShowItems ] = useState({
@@ -37,6 +38,10 @@ const Foods = () => {
 		});
 	};
 
+	const checkoutClick=()=>{
+		history.push('/cart')
+	}
+
 	return (
 		<BtnStyle className="container">
 			<div className={ `btn-type text-center active-${showItems.property.id}`}>
@@ -56,7 +61,7 @@ const Foods = () => {
 				})}
 			</div>
 			<div className="checkout">
-				<button className="btn checkout-btn" disabled={cartFoods.length===0}>Checkout Your Food</button>
+				<button onClick={checkoutClick} className="btn checkout-btn" disabled={cartFoods.length===0}>Checkout Your Food</button>
 			</div>
 		</BtnStyle>
 	);

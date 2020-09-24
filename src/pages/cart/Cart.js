@@ -1,11 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { CartSection } from '../../components/styles/StyleCart';
 import { clearCart, deliveryDetails } from '../../redux/actions';
 import CartItems from './CartItems';
 
 const Cart = () => {
+	const hist = useHistory();
 	const cartFoods = useSelector((state) => state.cart);
 	const dispatch = useDispatch();
 	const [ isDelivery, setIsDelivery ] = useState(false);
@@ -32,6 +34,10 @@ const Cart = () => {
 
 	const clearCartHandler = () => {
 		dispatch(clearCart());
+	};
+
+	const handlePlaceOrder = () => {
+		hist.push('/complete-order');
 	};
 
 	//Total, Subtotal, Tax, Delivery Fee
@@ -175,7 +181,14 @@ const Cart = () => {
 						</ul>
 					</div>
 					{cartFoods.length >= 1 && (
-						<button className="btn btn-place" disabled={!isDelivery}>
+						<button
+							onClick={handlePlaceOrder}
+							className="btn btn-place"
+							disabled={!isDelivery}
+							data-toggle="tooltip"
+							data-placement="top"
+							title={!isDelivery ? 'Fill delivery details to active place order' : ''}
+						>
 							Place Order
 						</button>
 					)}
