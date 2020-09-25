@@ -1,8 +1,18 @@
-const { ADD_CART, DELIVERY_INFO, INCREASE_AMOUNT, DECREASE_AMOUNT, REMOVE_CART, CLEAR_CART } = require('./actions');
+const {
+	ADD_CART,
+	DELIVERY_INFO,
+	INCREASE_AMOUNT,
+	DECREASE_AMOUNT,
+	REMOVE_CART,
+	CLEAR_CART,
+	LOGIN_USER,
+	SIGNOUT_USER
+} = require('./actions');
 
 const initialState = {
 	cart     : [],
-	delivery : {}
+	delivery : {},
+	userInfo : {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,7 +28,9 @@ const reducer = (state = initialState, action) => {
 				return item.id !== action.id;
 			});
 			return {
-				cart : [ ...filterId ]
+				cart     : [ ...filterId ],
+				userInfo : state.userInfo,
+				delivery : state.delivery
 			};
 
 		case CLEAR_CART:
@@ -37,7 +49,9 @@ const reducer = (state = initialState, action) => {
 				return item.id === action.id ? { ...item, quantity: item.quantity + 1 } : { ...item };
 			});
 			return {
-				cart : [ ...newCart ]
+				cart     : [ ...newCart ],
+				userInfo : state.userInfo,
+				delivery : state.delivery
 			};
 
 		case DECREASE_AMOUNT:
@@ -48,7 +62,21 @@ const reducer = (state = initialState, action) => {
 				return item.quantity <= 1 ? { ...item, quantity: 1 } : { ...item, quantity: item.quantity };
 			});
 			return {
-				cart : [ ...quantityManage ]
+				cart     : [ ...quantityManage ],
+				userInfo : state.userInfo,
+				delivery : state.delivery
+			};
+
+		case LOGIN_USER:
+			return {
+				...state,
+				userInfo : action.payload
+			};
+
+		case SIGNOUT_USER:
+			return {
+				...state,
+				userInfo : {}
 			};
 
 		default:

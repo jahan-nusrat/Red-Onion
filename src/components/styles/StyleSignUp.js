@@ -39,6 +39,17 @@ export const FormContainer = styled.div`
 			color: #f91944;
 		}
 	}
+	.icon {
+		font-size: 1.8rem;
+		margin: 0.9rem 0.5rem;
+		cursor: pointer;
+	}
+	.fb {
+		color: #1f82e9;
+	}
+	.google {
+		color: #ff1e1e;
+	}
 `;
 
 export const MainDiv = styled.div`

@@ -4,6 +4,8 @@ export const INCREASE_AMOUNT = 'INCREASE_AMOUNT';
 export const DECREASE_AMOUNT = 'DECREASE_AMOUNT'
 export const REMOVE_CART = 'REMOVE_CART';
 export const CLEAR_CART = 'CLEAR_CART';
+export const LOGIN_USER = 'LOGIN_USER';
+export const SIGNOUT_USER = 'SIGNOUT_USER'
 
 export const addToCart = (id, quantity, slug, img, name, price) => {
     return {
@@ -50,5 +52,21 @@ export const decreaseAmount = (id) => {
     return {
         type: DECREASE_AMOUNT,
         id
+    }
+}
+
+export const loggedInUser = (displayName, email) => {
+    return {
+        type: LOGIN_USER,
+        payload: {
+            displayName,
+            email
+        }
+    }
+}
+
+export const signedOutUser = () => {
+    return {
+        type: SIGNOUT_USER
     }
 }

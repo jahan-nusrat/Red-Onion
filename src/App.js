@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import FoodItem from './pages/FoodItem';
 import NavBar from './components/Nav/NavBar';
 import OrderComplete from './pages/order-complete/OrderComplete';
+import PrivateRoute from './components/private-route/PrivateRoute';
 
 const App = () => {
 	return (
@@ -20,19 +21,19 @@ const App = () => {
 					<NavBar />
 					<FoodItem />
 				</Route>
-				<Route path="/cart">
-					<NavBar />
-					<Cart />
-				</Route>
-				<Route path="/complete-order">
-					<NavBar />
-					<OrderComplete />
-				</Route>
 				<Route path="/login">
 					<LogIn />
 				</Route>
 				<Route path="/signup">
 					<SignUp />
+				</Route>
+				<PrivateRoute path="/cart">
+					<NavBar />
+					<Cart />
+				</PrivateRoute>
+				<Route path="/complete-order">
+					<NavBar />
+					<OrderComplete />
 				</Route>
 			</Switch>
 		</Router>

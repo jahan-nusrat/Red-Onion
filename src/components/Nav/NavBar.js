@@ -1,12 +1,40 @@
 import React from 'react';
 import logo from '../../Image/logo2.png';
 import { FaShoppingCart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Items } from '../styles/StyleNav';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import firebaseConfig from '../firebase/firebase.config';
+import { signedOutUser } from '../../redux/actions';
 
 const NavBar = () => {
+	const hist = useHistory();
+	const dispatch = useDispatch();
+	//firebase initialize
+	if (!firebase.apps.length) {
+		firebase.initializeApp(firebaseConfig);
+	}
+	const loginInfo = useSelector((state) => state.userInfo);
 	const cartQuantity = useSelector((state) => state.cart);
+
+	const signedOut = () => {
+		firebase
+			.auth()
+			.signOut()
+			.then(function (res) {
+				dispatch(signedOutUser());
+				toast.success('Signed Out Successfully');
+				hist.push('/');
+			})
+			.catch(function (error) {
+				console.log(error.message);
+			});
+	};
+
 	return (
 		<Items className="container nav-box">
 			<div className="row justify-content-between align-items-center">
@@ -26,10 +54,14 @@ const NavBar = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to="/login">Login</Link>
+							{loginInfo.displayName ? (
+								<Link onClick={signedOut}>{loginInfo.displayName}</Link>
+							) : (
+								<Link to="/login">Login</Link>
+							)}
 						</li>
 						<li>
-							<Link to="/signup">Sign Up</Link>
+							<Link to="/signup">Signup</Link>
 						</li>
 					</ul>
 				</div>
