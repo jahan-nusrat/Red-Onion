@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 const OrderComplete = () => {
 	const deliveryAddress = useSelector((state) => state.delivery);
+	console.log(deliveryAddress);
 	return (
 		<Order className="container">
 			<div className="row justify-content-between align-items-center">
@@ -23,7 +24,8 @@ const OrderComplete = () => {
 							<FaCircle className="circle" />
 							<strong>Your Location</strong>
 						</h6>
-						<p>{deliveryAddress.road}</p>
+						{deliveryAddress ? <p>{deliveryAddress.road}</p> : ''}
+
 						<div className="shop-address">
 							<h6>
 								<FaCircle className="circle" />
