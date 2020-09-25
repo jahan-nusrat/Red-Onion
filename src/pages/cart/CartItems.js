@@ -3,8 +3,10 @@ import { FaPlus, FaMinus, FaRegTimesCircle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { SingleProduct } from '../../components/styles/StyleCart';
 import { decreaseAmount, increaseAmount, removeFromCart } from '../../redux/actions';
-const CartItems = ({ food }) => {
-	const { quantity, img, name, price } = food;
+import PropTypes from 'prop-types';
+
+const CartItems = (props) => {
+	const { quantity, img, name, price } = props.food;
 	const [ value, setValue ] = useState(quantity);
 	const inputHandler = (e) => {
 		const { value } = e.target;
@@ -17,12 +19,12 @@ const CartItems = ({ food }) => {
 	const dispatch = useDispatch();
 
 	const nxtBtn = () => {
-		dispatch(increaseAmount(food.id));
+		dispatch(increaseAmount(props.food.id));
 		setValue(value + 1);
 	};
 
 	const prevBtn = () => {
-		dispatch(decreaseAmount(food.id));
+		dispatch(decreaseAmount(props.food.id));
 		setValue(value - 1);
 		if (value <= 1) {
 			setValue(1);
@@ -30,7 +32,7 @@ const CartItems = ({ food }) => {
 	};
 
 	const removeHandle = () => {
-		dispatch(removeFromCart(food.id));
+		dispatch(removeFromCart(props.food.id));
 	};
 
 	function truncate (str, n) {
@@ -65,6 +67,13 @@ const CartItems = ({ food }) => {
 			</div>
 		</SingleProduct>
 	);
+};
+
+CartItems.propTypes = {
+	name     : PropTypes.string,
+	id       : PropTypes.number,
+	quantity : PropTypes.number,
+	price    : PropTypes.number
 };
 
 export default CartItems;

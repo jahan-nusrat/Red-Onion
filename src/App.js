@@ -11,18 +11,21 @@ import OrderComplete from './pages/order-complete/OrderComplete';
 const App = () => {
 	return (
 		<Router>
-			<NavBar />
 			<Switch>
 				<Route exact path="/">
+					<NavBar />
 					<Home />
 				</Route>
 				<Route path="/:id/:slug">
+					<NavBar />
 					<FoodItem />
 				</Route>
 				<Route path="/cart">
+					<NavBar />
 					<Cart />
 				</Route>
 				<Route path="/complete-order">
+					<NavBar />
 					<OrderComplete />
 				</Route>
 				<Route path="/login">

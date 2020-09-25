@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 const OrderComplete = () => {
 	const deliveryAddress = useSelector((state) => state.delivery);
-	console.log(deliveryAddress);
+
 	return (
 		<Order className="container">
 			<div className="row justify-content-between align-items-center">

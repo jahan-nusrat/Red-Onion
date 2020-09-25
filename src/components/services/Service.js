@@ -1,7 +1,7 @@
 import React from 'react';
 import data from '../../fakeData/services';
 import { ServiceContainer } from '../styles/StyleService';
-import { FaArrowCircleRight, FaLongArrowAltRight } from 'react-icons/fa';
+import { FaArrowCircleRight } from 'react-icons/fa';
 
 const Service = () => {
 	return (
@@ -18,7 +18,7 @@ const Service = () => {
 			<div className="row align-items-center">
 				{data.map((info) => {
 					return (
-						<div className="col-lg-4">
+						<div className="col-lg-4" key={info.id}>
 							<div className="service-box">
 								<div className="service-img">
 									<img src={info.img} alt={info.title} className="img-fluid" />
