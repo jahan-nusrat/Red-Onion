@@ -55,13 +55,10 @@ export const decreaseAmount = (id) => {
     }
 }
 
-export const loggedInUser = (displayName, email) => {
+export const loggedInUser = (info) => {
     return {
         type: LOGIN_USER,
-        payload: {
-            displayName,
-            email
-        }
+        payload: info
     }
 }
 

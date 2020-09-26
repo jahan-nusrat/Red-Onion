@@ -9,39 +9,28 @@ import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import firebaseConfig from '../components/firebase/firebase.config';
 import { loggedInUser } from '../redux/actions';
 
 const LogIn = () => {
 	const history = useHistory();
 	const location = useLocation();
-	const { from } = location.state || { from: { pathname: '/' } };
+	const { from } = location.state || { from: { pathname: '/cart' } };
 	//firebase initialize
 	if (!firebase.apps.length) {
 		firebase.initializeApp(firebaseConfig);
 	}
 	//redux
-	const loginInfo = useSelector((state) => state.userInfo);
-	console.log(loginInfo);
 	const dispatch = useDispatch();
 	//state
 	const [ user, setUser ] = useState({
-		displayName : '',
-		email       : '',
-		password    : ''
+		email    : '',
+		password : ''
 	});
 
 	//handle input data
 	const handleInput = (e) => {
-		if (e.target.name === 'email') {
-			const regex = /\S+@\S+\.\S+/;
-			regex.test();
-		}
-		if (e.target.name === 'password') {
-			const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-			regex.test();
-		}
 		setUser({
 			...user,
 			[e.target.name]: e.target.value
@@ -55,14 +44,8 @@ const LogIn = () => {
 			.auth()
 			.signInWithPopup(provider)
 			.then(function (result) {
-				const { displayName, email } = result.user;
-				setUser({
-					displayName,
-					email
-				});
+				dispatch(loggedInUser(result.user));
 				toast.success('Logged In Successfully');
-				dispatch(loggedInUser(displayName, email));
-
 				history.replace(from);
 			})
 			.catch(function (error) {
@@ -77,10 +60,9 @@ const LogIn = () => {
 			.auth()
 			.signInWithPopup(fbProvider)
 			.then(function (result) {
-				const { displayName, email } = result.user;
-				setUser({ displayName, email });
+				dispatch(loggedInUser(result.user));
 				toast.success('Logged In Successfully');
-				dispatch(loggedInUser(displayName, email));
+
 				history.replace(from);
 			})
 			.catch(function (error) {
@@ -91,7 +73,7 @@ const LogIn = () => {
 	//on form submit
 	const handleForm = (e) => {
 		e.preventDefault();
-		if (!user.email && !user.displayName) {
+		if (!user.email && !user.password) {
 			document.getElementById('error').innerText = 'Enter All Values Correctly';
 		}
 		else {
@@ -99,7 +81,7 @@ const LogIn = () => {
 				.auth()
 				.signInWithEmailAndPassword(user.email, user.password)
 				.then((result) => {
-					dispatch(loggedInUser(user.email, user.password));
+					dispatch(loggedInUser(result.user));
 					history.replace(from);
 				})
 				.catch((error) => {

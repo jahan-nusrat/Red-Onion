@@ -70,7 +70,8 @@ const reducer = (state = initialState, action) => {
 		case LOGIN_USER:
 			return {
 				...state,
-				userInfo : action.payload
+				userInfo : action.payload,
+				cart     : state.cart
 			};
 
 		case SIGNOUT_USER:

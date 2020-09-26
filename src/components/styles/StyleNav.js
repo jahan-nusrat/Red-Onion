@@ -19,6 +19,9 @@ export const Items = styled.nav`
 	.items {
 		ul {
 			li {
+				.user {
+					font-size: 0.9rem;
+				}
 				box-sizing: border-box;
 				margin: 0 1rem;
 				padding: 0.5rem 0.8rem;

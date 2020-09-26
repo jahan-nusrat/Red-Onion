@@ -6,8 +6,6 @@ import { Items } from '../styles/StyleNav';
 import { useDispatch, useSelector } from 'react-redux';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
 import firebaseConfig from '../firebase/firebase.config';
 import { signedOutUser } from '../../redux/actions';
 
@@ -27,7 +25,6 @@ const NavBar = () => {
 			.signOut()
 			.then(function (res) {
 				dispatch(signedOutUser());
-				toast.success('Signed Out Successfully');
 				hist.push('/');
 			})
 			.catch(function (error) {
@@ -55,7 +52,9 @@ const NavBar = () => {
 						</li>
 						<li>
 							{loginInfo.displayName ? (
-								<Link onClick={signedOut}>{loginInfo.displayName}</Link>
+								<Link to="/" onClick={signedOut} className="user">
+									{loginInfo.displayName}
+								</Link>
 							) : (
 								<Link to="/login">Login</Link>
 							)}
