@@ -42,7 +42,6 @@ const App = () => {
 					<OrderComplete />
 				</Route>
 				<Route path="*">
-					<NavBar />
 					<Error404 />
 				</Route>
 			</Switch>

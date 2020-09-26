@@ -94,10 +94,12 @@ const LogIn = () => {
 		<MainDiv>
 			<img src={bg} alt="" className="img-fluid bg" />
 			<FormContainer className="container">
-				<img src={logo} alt="banner" />
 				<div className="row justify-content-center">
 					<div className="col-md-4">
 						<form onSubmit={handleForm}>
+							<Link to="/">
+								<img src={logo} alt="banner" />
+							</Link>
 							<div className="form-group">
 								<input
 									type="email"

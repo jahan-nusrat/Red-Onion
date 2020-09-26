@@ -2,16 +2,14 @@ import styled from 'styled-components';
 
 export const FormContainer = styled.div`
 	font-family: 'Montserrat', sans-serif;
-	padding: 4rem 0;
-
-	img {
-		width: 200px;
-		margin: auto;
-		display: block;
-		margin-bottom: 2.5rem;
-	}
-
+	padding: 6rem 0;
 	form {
+		img {
+			width: 200px;
+			margin: auto;
+			display: block;
+			margin-bottom: 2.5rem;
+		}
 		.form-control {
 			background-color: #f5f5f5;
 			border-color: transparent;

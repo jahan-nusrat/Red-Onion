@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const ErrorDiv = styled.div`
 	font-family: 'Bebas Neue', cursive;
+	.row {
+		height: 100vh;
+	}
 	h3 {
 		font-size: 7rem;
 		letter-spacing: 2px;
