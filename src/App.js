@@ -9,6 +9,7 @@ import NavBar from './components/Nav/NavBar';
 import OrderComplete from './pages/order-complete/OrderComplete';
 import PrivateRoute from './components/private-route/PrivateRoute';
 import User from './pages/User';
+import Error404 from './pages/Error404';
 
 const App = () => {
 	return (
@@ -39,6 +40,10 @@ const App = () => {
 				<Route path="/complete-order">
 					<NavBar />
 					<OrderComplete />
+				</Route>
+				<Route path="*">
+					<NavBar />
+					<Error404 />
 				</Route>
 			</Switch>
 		</Router>
