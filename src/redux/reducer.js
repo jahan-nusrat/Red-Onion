@@ -18,9 +18,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_CART:
+			let filterCart = [ ...state.cart ].filter((item) => {
+				return item.name !== action.payload.name;
+			});
 			return {
 				...state,
-				cart : [ ...state.cart, action.payload ]
+				cart : [ ...filterCart, action.payload ]
 			};
 
 		case REMOVE_CART:
