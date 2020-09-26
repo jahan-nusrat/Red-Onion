@@ -1,6 +1,10 @@
+<div align="center">
 # :hamburger: **Red-Onion Restaurant**
+</div>
 
-<h4>A full-stack restaurant web app where anyone can order their favorite food from the menu and have options for breakfast, lunch, and dinner. Users can order food and pay online to receive food while sitting home.</h4>
+---
+
+<p>A full-stack restaurant web app where anyone can order their favorite food from the menu and have options for breakfast, lunch, and dinner. Users can order food and pay online to receive food while sitting home.</p>
 
 ![](https://i.ibb.co/djj4sbb/user-profile.png)
 
@@ -21,21 +25,19 @@ create-react-app hot-onion
 - Yarn packages
 
 ```
-:arrow_right: yarn add redux react-redux
-:arrow_right: yarn add styled-components
-:arrow_right: yarn add react-bootstrap
-:arrow_right: yarn add react-router-dom
-:arrow_right: yarn add firebase
+yarn add redux react-redux
+yarn add styled-components
+yarn add react-bootstrap
+yarn add react-router-dom
+yarn add firebase
+yarn start
 ```
 
 ## :arrow_forward: Technology Used
 ---
 - :stars: Front-End :stars:
 
-    - React
-    - React-redux
-    - Bootstrap-4
-    - React router
+    - React, React-redux ,Bootstrap-4, React router
 - :stars: Back-End :stars:
     
     - Firebase authentication
