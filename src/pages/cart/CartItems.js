@@ -6,8 +6,6 @@ import { decreaseAmount, increaseAmount, removeFromCart } from '../../redux/acti
 import PropTypes from 'prop-types';
 
 const CartItems = (props) => {
-	const cartFoods = useSelector((state) => state.cart);
-	console.log(cartFoods);
 	const { quantity, img, name, price } = props.food;
 	const [ value, setValue ] = useState(quantity);
 	const inputHandler = (e) => {

@@ -38,7 +38,9 @@ const reducer = (state = initialState, action) => {
 
 		case CLEAR_CART:
 			return {
-				cart : []
+				cart     : [],
+				userInfo : state.userInfo,
+				delivery : state.delivery
 			};
 
 		case DELIVERY_INFO:

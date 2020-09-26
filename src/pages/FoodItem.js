@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { FaShoppingCart, FaPlus, FaMinus, FaAngleRight, FaAngleLeft } from 'react-icons/fa';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { SingleItem } from '../components/styles/StyleFoods';
 import foodData from '../fakeData/data';
@@ -11,6 +11,7 @@ import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const FoodItem = () => {
+	const cartFoods= useSelector(state=>state.cart)
 	const dispatch= useDispatch();
 	const history = useHistory();
 	let { slug, id } = useParams();
@@ -72,7 +73,15 @@ const FoodItem = () => {
 
 	const handleCart=()=>{
 		dispatch(addToCart(selectedItem.id, counter, slug, selectedItem.img, selectedItem.name, selectedItem.price))
-		toast.info("Items Added to Cart")
+		let findSameItem= cartFoods.find(item=>{
+			return item.name===selectedItem.name
+		})
+		if(findSameItem){
+			toast.error("same item can not be added to cart")
+		}else{
+			toast.info("Items Added to Cart")
+		}
+		
 	}
 
 	return (
