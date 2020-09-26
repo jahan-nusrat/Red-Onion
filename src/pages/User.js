@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { UserDiv } from '../components/styles/StyleUser';
 import icon from '../Image/ICON/user.png';
 
@@ -34,6 +35,27 @@ const User = () => {
 						<h4>You have no items in cart</h4>
 					)}
 				</div>
+			</div>
+			<div className="row align-items-center justify-content-center">
+				{cartInfo.map((item) => {
+					return (
+						<div className="col-lg-5 text-center">
+							<div className="cart-items mb-3">
+								<Link to="/cart">
+									<strong>
+										Order id: #{item.id}-{item.slug}
+									</strong>
+								</Link>
+
+								<img src={item.img} alt={item.name} className="img-fluid" />
+								<h6 className="mt-2">
+									<strong>{item.name}</strong>{' '}
+								</h6>
+								<h6>Subtotal: ${(item.price * item.quantity).toFixed(2)}</h6>
+							</div>
+						</div>
+					);
+				})}
 			</div>
 		</UserDiv>
 	);

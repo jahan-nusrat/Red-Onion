@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaPlus, FaMinus, FaRegTimesCircle } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { SingleProduct } from '../../components/styles/StyleCart';
 import { decreaseAmount, increaseAmount, removeFromCart } from '../../redux/actions';
 import PropTypes from 'prop-types';

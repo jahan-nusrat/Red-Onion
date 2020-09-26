@@ -29,4 +29,20 @@ export const UserDiv = styled.div`
 	h4 {
 		color: #f91944;
 	}
+	.cart-items {
+		box-shadow: 1px 5px 8px 1px rgba(0, 0, 0, 0.2);
+		padding: 1rem;
+		border-radius: 10px;
+		a {
+			color: #165dca;
+			font-size: 0.85rem;
+		}
+		img {
+			margin: auto;
+			display: block;
+			height: 100px;
+			width: 100px;
+			object-fit: cover;
+		}
+	}
 `;
