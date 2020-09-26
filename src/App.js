@@ -8,6 +8,7 @@ import FoodItem from './pages/FoodItem';
 import NavBar from './components/Nav/NavBar';
 import OrderComplete from './pages/order-complete/OrderComplete';
 import PrivateRoute from './components/private-route/PrivateRoute';
+import User from './pages/User';
 
 const App = () => {
 	return (
@@ -31,6 +32,10 @@ const App = () => {
 					<NavBar />
 					<Cart />
 				</PrivateRoute>
+				<Route path="/user-info">
+					<NavBar />
+					<User />
+				</Route>
 				<Route path="/complete-order">
 					<NavBar />
 					<OrderComplete />

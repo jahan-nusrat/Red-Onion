@@ -52,7 +52,7 @@ const NavBar = () => {
 						</li>
 						<li>
 							{loginInfo.displayName ? (
-								<Link to="/" onClick={signedOut} className="user">
+								<Link to="/user-info" className="user">
 									{loginInfo.displayName}
 								</Link>
 							) : (
@@ -60,7 +60,13 @@ const NavBar = () => {
 							)}
 						</li>
 						<li>
-							<Link to="/signup">Signup</Link>
+							{loginInfo.email ? (
+								<Link to="/" onClick={signedOut}>
+									Logout
+								</Link>
+							) : (
+								<Link to="/signup">Sign up</Link>
+							)}
 						</li>
 					</ul>
 				</div>

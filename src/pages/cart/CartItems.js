@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { FaPlus, FaMinus, FaRegTimesCircle } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SingleProduct } from '../../components/styles/StyleCart';
 import { decreaseAmount, increaseAmount, removeFromCart } from '../../redux/actions';
 import PropTypes from 'prop-types';
 
 const CartItems = (props) => {
+	const cartFoods = useSelector((state) => state.cart);
+	console.log(cartFoods);
 	const { quantity, img, name, price } = props.food;
 	const [ value, setValue ] = useState(quantity);
 	const inputHandler = (e) => {
