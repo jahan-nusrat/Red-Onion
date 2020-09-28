@@ -10,7 +10,6 @@ const Home = () => {
 			<Hero />
 			<Foods />
 			<Service />
-			<Footer />
 		</header>
 	);
 };

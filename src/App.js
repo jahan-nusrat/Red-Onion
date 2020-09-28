@@ -10,6 +10,7 @@ import OrderComplete from './pages/order-complete/OrderComplete';
 import PrivateRoute from './components/private-route/PrivateRoute';
 import User from './pages/User';
 import Error404 from './pages/Error404';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
 	return (
@@ -18,10 +19,12 @@ const App = () => {
 				<Route exact path="/">
 					<NavBar />
 					<Home />
+					<Footer />
 				</Route>
 				<Route path="/:id/:slug">
 					<NavBar />
 					<FoodItem />
+					<Footer />
 				</Route>
 				<Route path="/login">
 					<LogIn />
@@ -32,6 +35,7 @@ const App = () => {
 				<PrivateRoute path="/cart">
 					<NavBar />
 					<Cart />
+					<Footer />
 				</PrivateRoute>
 				<Route path="/user-info">
 					<NavBar />
@@ -40,6 +44,7 @@ const App = () => {
 				<Route path="/complete-order">
 					<NavBar />
 					<OrderComplete />
+					<Footer />
 				</Route>
 				<Route path="*">
 					<Error404 />
