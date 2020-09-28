@@ -2,8 +2,11 @@ import React from 'react';
 import data from '../../fakeData/services';
 import { ServiceContainer } from '../styles/StyleService';
 import { FaArrowCircleRight } from 'react-icons/fa';
+import { useState } from 'react';
 
 const Service = () => {
+	const [ isCollapsed, setIsCollapsed ] = useState(true);
+
 	return (
 		<ServiceContainer className="container">
 			<div className="section-title">
@@ -16,7 +19,7 @@ const Service = () => {
 				</p>
 			</div>
 			<div className="row align-items-center">
-				{data.map((info) => {
+				{data.map((info, index) => {
 					return (
 						<div className="col-lg-4" key={info.id}>
 							<div className="service-box">
@@ -30,12 +33,23 @@ const Service = () => {
 											<strong>{info.title}</strong>
 										</h5>
 									</div>
-									<p>{info.description}</p>
-									<button className="btn">
-										<strong>
-											See more <FaArrowCircleRight className="arrow" />
-										</strong>
-									</button>
+									{isCollapsed ? (
+										<React.Fragment>
+											<p>{info.description.slice(0, 80)}...</p>
+											<button onClick={() => setIsCollapsed(!isCollapsed)} className="btn">
+												See More
+												<FaArrowCircleRight className="arrow" />
+											</button>
+										</React.Fragment>
+									) : (
+										<React.Fragment>
+											<p>{info.description}</p>
+											<button onClick={() => setIsCollapsed(!isCollapsed)} className="btn">
+												See Less
+												<FaArrowCircleRight className="arrow" />
+											</button>
+										</React.Fragment>
+									)}
 								</div>
 							</div>
 						</div>
