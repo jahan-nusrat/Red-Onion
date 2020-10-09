@@ -37,6 +37,19 @@ const LogIn = () => {
 		});
 	};
 
+	const setUserToken = () => {
+		firebase
+			.auth()
+			.currentUser.getIdToken(true)
+			.then(function (idToken) {
+				sessionStorage.setItem('token', idToken);
+				console.log(idToken);
+			})
+			.catch(function (error) {
+				alert(error.message);
+			});
+	};
+
 	//google login handle
 	var provider = new firebase.auth.GoogleAuthProvider();
 	const googleLogin = () => {
@@ -46,6 +59,7 @@ const LogIn = () => {
 			.then(function (result) {
 				dispatch(loggedInUser(result.user));
 				toast.success('Logged In Successfully');
+				setUserToken();
 				history.replace(from);
 			})
 			.catch(function (error) {

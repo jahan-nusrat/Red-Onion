@@ -39,7 +39,7 @@ const User = () => {
 			<div className="row align-items-center justify-content-center">
 				{cartInfo.map((item) => {
 					return (
-						<div className="col-lg-5 text-center">
+						<div className="col-lg-5 text-center" key={item.id}>
 							<div className="cart-items mb-3">
 								<Link to="/cart">
 									<strong>

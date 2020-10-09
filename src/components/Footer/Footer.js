@@ -14,12 +14,12 @@ const Footer = () => {
 					<div className="col-lg">
 						<ul className="nav flex-column">
 							<li className="nav-item">
-								<a className="nav-link" href="#">
+								<a className="nav-link" href="#/">
 									About online food
 								</a>
 							</li>
 							<li className="nav-item">
-								<a href="#" className="nav-link">
+								<a href="#/" className="nav-link">
 									Read our blog
 								</a>
 							</li>
@@ -29,7 +29,7 @@ const Footer = () => {
 								</Link>
 							</li>
 							<li className="nav-item">
-								<a href="#" className="nav-link">
+								<a href="#/" className="nav-link">
 									Add your restaurant
 								</a>
 							</li>
@@ -38,22 +38,22 @@ const Footer = () => {
 					<div className="col-lg">
 						<ul className="nav flex-column">
 							<li className="nav-item">
-								<a className="nav-link" href="#">
+								<a className="nav-link" href="#/">
 									Get help
 								</a>
 							</li>
 							<li className="nav-item">
-								<a href="#" className="nav-link">
+								<a href="#/" className="nav-link">
 									Read FAQs
 								</a>
 							</li>
 							<li className="nav-item">
-								<a href="#" className="nav-link">
+								<a href="#/" className="nav-link">
 									View all cities
 								</a>
 							</li>
 							<li className="nav-item">
-								<a href="#" className="nav-link">
+								<a href="#/" className="nav-link">
 									Restaurants near me
 								</a>
 							</li>

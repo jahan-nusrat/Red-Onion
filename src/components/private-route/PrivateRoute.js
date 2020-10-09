@@ -8,7 +8,7 @@ const PrivateRoute = ({ children, ...rest }) => {
 		<Route
 			{...rest}
 			render={({ location }) =>
-				loginInfo.email ? (
+				loginInfo.email || sessionStorage.getItem('token') ? (
 					children
 				) : (
 					<Redirect
