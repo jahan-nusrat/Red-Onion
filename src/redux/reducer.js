@@ -6,8 +6,7 @@ const {
 	REMOVE_CART,
 	CLEAR_CART,
 	LOGIN_USER,
-	SIGNOUT_USER,
-	PAYMENT_USER
+	SIGNOUT_USER
 } = require('./actions');
 
 const initialState = {
@@ -49,12 +48,6 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				delivery : action.payload
-			};
-
-		case PAYMENT_USER:
-			return {
-				...state,
-				paymentDetails : action.payload
 			};
 
 		case INCREASE_AMOUNT:

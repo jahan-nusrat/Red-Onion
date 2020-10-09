@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { CartSection } from '../../components/styles/StyleCart';
 import { clearCart, deliveryDetails } from '../../redux/actions';
 import CartItems from './CartItems';
+import Payment from '../../components/payment/Payment';
 
 const Cart = () => {
 	const hist = useHistory();
@@ -26,10 +27,27 @@ const Cart = () => {
 		});
 	};
 
+	const handlePayment = (id) => {
+		setUserPaymentInfo({
+			...userPaymentInfo,
+			id : id
+		});
+	};
+	const [ userPaymentInfo, setUserPaymentInfo ] = useState({
+		id          : '',
+		roadAddress : '',
+		flatAddress : ''
+	});
+
 	const handleForm = (e) => {
 		e.preventDefault();
 		setIsDelivery(true);
 		dispatch(deliveryDetails(delivery));
+		setUserPaymentInfo({
+			...userPaymentInfo,
+			roadAddress : delivery.road,
+			flatAddress : delivery.flat
+		});
 	};
 
 	const clearCartHandler = () => {
@@ -120,6 +138,7 @@ const Cart = () => {
 							Save & Continue
 						</button>
 					</form>
+					<Payment handlePayment={handlePayment} />
 				</div>
 				<div className="col-lg-5">
 					{cartFoods.length >= 1 && (

@@ -68,10 +68,3 @@ export const signedOutUser = () => {
 		type : SIGNOUT_USER
 	};
 };
-
-export const paymentInfo = (info) => {
-	return {
-		type    : PAYMENT_USER,
-		payload : info
-	};
-};
