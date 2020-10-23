@@ -28,20 +28,21 @@ const CardForm = (props) => {
 		else {
 			setSuccess(paymentMethod.id);
 			props.handlePayment(paymentMethod.id);
+			props.setIsPaid(true)
 			setErrors(null);
 		}
 	};
 
 	return (
-		<div>
+		<div className="payment-form shadow mt-5 p-3">
 			<form onSubmit={handleSubmit}>
 				<CardElement />
-				<button type="submit" disabled={!stripe}>
+				<button className="btn btn-primary px-4 py-1 mt-4" type="submit" disabled={!stripe}>
 					Pay
 				</button>
 			</form>
-			{errors && <p>{errors}</p>}
-			{success && <p>Thank you for completing your transaction</p>}
+			{errors && <p className="mt-3">{errors}</p>}
+			{success && <p className="mt-3">Thank you for completing your transaction</p>}
 		</div>
 	);
 };

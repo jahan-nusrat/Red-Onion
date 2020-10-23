@@ -12,6 +12,7 @@ const Cart = () => {
 	const cartFoods = useSelector((state) => state.cart);
 	const dispatch = useDispatch();
 	const [ isDelivery, setIsDelivery ] = useState(false);
+	const [isPaid, setIsPaid]= useState(false)
 	const [ delivery, setDelivery ] = useState({
 		type        : '',
 		road        : '',
@@ -75,7 +76,8 @@ const Cart = () => {
 		<CartSection className="container cart-section">
 			<div className="row justify-content-around cart-content">
 				<div className="col-lg-5 form-info">
-					<form onSubmit={handleForm}>
+					{
+						!isDelivery && <form onSubmit={handleForm}>
 						<h4>Edit Delivery Details</h4>
 						<hr />
 						<div className="form-group">
@@ -138,7 +140,12 @@ const Cart = () => {
 							Save & Continue
 						</button>
 					</form>
-					<Payment handlePayment={handlePayment} />
+					}
+					<div className="payment-sec">
+					{
+						isDelivery && <Payment setIsPaid={setIsPaid} handlePayment={handlePayment} />
+					}
+					</div>
 				</div>
 				<div className="col-lg-5">
 					{cartFoods.length >= 1 && (
@@ -203,7 +210,7 @@ const Cart = () => {
 						<button
 							onClick={handlePlaceOrder}
 							className="btn btn-place"
-							disabled={!isDelivery}
+							disabled={!isPaid}
 							data-toggle="tooltip"
 							data-placement="top"
 							title={!isDelivery ? 'Fill delivery details to active place order' : ''}

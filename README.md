@@ -4,6 +4,7 @@
 
 </div>
 
+
 <p>A full-stack restaurant web app where anyone can order their favorite food from the menu and have options for breakfast, lunch, and dinner. Users can order food and pay online to receive food while sitting home.</p>
 
 ![](https://i.ibb.co/djj4sbb/user-profile.png)
