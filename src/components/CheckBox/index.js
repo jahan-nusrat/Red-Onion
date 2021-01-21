@@ -3,7 +3,7 @@ import React from "react";
 import "./style.css";
 
 const CheckBox = (props) => {
-  const { label, onChange, value } = props;
+  const { label, onChange, checked } = props;
   return (
     <div
       style={{
@@ -19,8 +19,9 @@ const CheckBox = (props) => {
     >
       <label style={{ margin: "0px" }}>{label}:</label>
       <input
+        {...props}
         onChange={onChange}
-        value={value}
+        checked={checked}
         type={"checkbox"}
         style={{
           border: "1px solid #E1E3E6",

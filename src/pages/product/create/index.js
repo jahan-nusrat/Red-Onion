@@ -33,11 +33,7 @@ const ModalEditProduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     console.log(imagem);
-
-    const fData = new FormData();
-    fData.append("img", imagem);
 
     const data = {
       name: nome,
@@ -45,17 +41,12 @@ const ModalEditProduct = () => {
       info: descricao,
       price: valor,
       categoria,
-      image: fData,
       disponivel,
     };
 
     handleClose();
-    dispatch(FoodAction.createFoodRequest(data));
+    dispatch(FoodAction.createFoodRequest({ food: data, image: imagem }));
   };
-
-  useEffect(() => {
-    dispatch(ActionCategories.readCategoriesRequest());
-  }, [dispatch]);
 
   const handleClose = () => {
     dispatch(FoodAction.hidevModalCreateFood());
@@ -63,8 +54,11 @@ const ModalEditProduct = () => {
 
   const onChange = (event) => {
     setImagem(event.target.files[0]);
-    console.log(imagem);
   };
+
+  useEffect(() => {
+    dispatch(ActionCategories.readCategoriesRequest());
+  }, [dispatch]);
 
   return (
     <Modal
@@ -153,7 +147,7 @@ const ModalEditProduct = () => {
             }}
           >
             <div style={{ width: "100%" }}>
-              <Image type="file" onChange={(e) => onChange(e)} />
+              <Image type="file" onChange={(e) => onChange(e)} required />
             </div>
 
             <CheckBox

@@ -10,6 +10,9 @@ export const Types = {
   UPDATE_FOOD_REQUEST: "@food/UPDATE_FOOD_REQUEST",
   UPDATE_FOOD_SUCCESS: "@food/UPDATE_FOOD_SUCCESS",
 
+  UPDATE_FOOD_IMAGE_REQUEST: "@food/UPDATE_FOOD_IMAGE_REQUEST",
+  UPDATE_FOOD_IMAGE_SUCCESS: "@food/UPDATE_FOOD_IMAGE_SUCCESS",
+
   DELETE_FOOD_REQUEST: "@food/DELETE_FOOD_REQUEST",
   DELETE_FOOD_SUCCESS: "@food/DELETE_FOOD_SUCCESS",
 
@@ -47,6 +50,7 @@ export default function foodsAction(state = INITIAL_STATE, action) {
       return {
         ...state,
         update_food: true,
+        update_categorie_date: action.payload.food,
       };
 
     case Types.HIDE_MODAL_UPDATE_FOOD:
@@ -68,16 +72,22 @@ export default function foodsAction(state = INITIAL_STATE, action) {
         loading: false,
       };
 
-    case Types.CREATE_FOOD_REQUEST:
-      return {
-        ...state,
-        foods: [...state.foods, action.payload.food],
-      };
-
     case Types.UPDATE_FOOD_SUCCESS:
       return {
         ...state,
         foods: updateState(state.foods, action.payload.food),
+      };
+
+    case Types.UPDATE_FOOD_IMAGE_SUCCESS:
+      return {
+        ...state,
+        foods: updateState(state.foods, action.payload.food),
+      };
+
+    case Types.CREATE_FOOD_SUCCESS:
+      return {
+        ...state,
+        foods: [...state.foods, action.payload.food],
       };
 
     case Types.DELETE_FOOD_SUCCESS:
@@ -104,8 +114,11 @@ export const Creators = {
     type: Types.HIDE_MODAL_CREATE_FOOD,
   }),
 
-  showModalUpdateFood: () => ({
+  showModalUpdateFood: (food) => ({
     type: Types.SHOW_MODAL_UPDATE_FOOD,
+    payload: {
+      food,
+    },
   }),
 
   hideModalUpdateFood: () => ({
@@ -138,6 +151,16 @@ export const Creators = {
 
   updateFoodSuccess: (food) => ({
     type: Types.UPDATE_FOOD_SUCCESS,
+    payload: { food },
+  }),
+
+  updateFoodImageRequest: (food) => ({
+    type: Types.UPDATE_FOOD_IMAGE_REQUEST,
+    payload: { food },
+  }),
+
+  updateFoodImageSuccess: (food) => ({
+    type: Types.UPDATE_FOOD_IMAGE_SUCCESS,
     payload: { food },
   }),
 

@@ -2,7 +2,13 @@
 import { all, take, takeLatest } from "redux-saga/effects";
 
 import { Types as foodTypes } from "../ducks/food";
-import { readFood, createFood, deleteFood, updateFood } from "./food";
+import {
+  readFood,
+  createFood,
+  deleteFood,
+  updateFood,
+  updateFoodImage,
+} from "./food";
 
 import { AuthTypes } from "../ducks/auth";
 import { signIn, signOut } from "./auth";
@@ -22,6 +28,8 @@ export default function* rootSaga() {
     takeLatest(foodTypes.READ_FOOD_REQUEST, readFood),
     takeLatest(foodTypes.CREATE_FOOD_REQUEST, createFood),
     takeLatest(foodTypes.UPDATE_FOOD_REQUEST, updateFood),
+    takeLatest(foodTypes.DELETE_FOOD_REQUEST, deleteFood),
+    takeLatest(foodTypes.UPDATE_FOOD_IMAGE_REQUEST, updateFoodImage),
     takeLatest(foodTypes.DELETE_FOOD_REQUEST, deleteFood),
 
     takeLatest(CategoriesTypes.READ_CATEGORIE_REQUEST, readCategories),

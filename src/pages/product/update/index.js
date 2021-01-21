@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Modal, Typography } from "@material-ui/core/";
 
 import { Creators as FoodAction } from "../../../redux/ducks/food";
+import { Creators as ActionCategories } from "../../../redux/ducks/categories";
 import { useDispatch } from "react-redux";
 
 import Input from "../../../components/Input";
@@ -13,9 +14,14 @@ import Image from "../../../components/ImageInput";
 import Select from "../../../components/Select";
 
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
+import { useSelector } from "react-redux";
 
-const ModalEditProduct = ({ food }) => {
+const ModalEditProduct = () => {
   const dispatch = useDispatch();
+
+  const categories = useSelector((state) => state.categorie.categories);
+  const open = useSelector((state) => state.food.update_food);
+  const food = useSelector((state) => state.food.update_categorie_date);
 
   const [nome, setNome] = useState("");
   const [titulo, setTitulo] = useState("");
@@ -25,35 +31,48 @@ const ModalEditProduct = ({ food }) => {
   const [imagem, setImagem] = useState("");
   const [disponivel, setDisponivel] = useState(false);
 
-  const open = false;
+  console.log(food);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("aqui");
 
     const data = {
       id: food.id,
-      nome,
-      titulo,
-      descricao,
-      valor,
+      name: nome,
+      title: titulo,
+      info: descricao,
+      price: valor,
       categoria,
-      imagem,
       disponivel,
+      imagem: food.image,
     };
 
+    if (imagem) {
+      dispatch(
+        FoodAction.updateFoodImageRequest({ food: data, image: imagem })
+      );
+    } else {
+      dispatch(FoodAction.updateFoodRequest(data));
+    }
+
     handleClose();
-    dispatch(FoodAction.updateFoodRequest(data));
   };
 
-  /*
-  useEffect(()=>{
-    dispatch(ActonCategories.readCaterogiesRequest())
-  const categories = useSelector(state => state.categorie.categories)
+  useEffect(() => {
+    setNome(food.name);
+    setTitulo(food.title);
+    setDisponivel(food.disponible);
+    setValor(food.price);
+    setDescricao(food.description);
+  }, [food.description, food.disponible, food.name, food.price, food.title]);
 
-  },[])*/
+  useEffect(() => {
+    dispatch(ActionCategories.readCategoriesRequest());
+  }, [dispatch]);
 
-  const handleClose = () => {};
+  const handleClose = () => {
+    dispatch(FoodAction.hideModalUpdateFood());
+  };
 
   return (
     <Modal
@@ -83,7 +102,12 @@ const ModalEditProduct = ({ food }) => {
             padding: "20px 40px",
           }}
         >
-          <Typography variant="h4">Editar Prato</Typography>
+          <Typography
+            variant="h4"
+            style={{ marginTop: "15px", marginBottom: "15px" }}
+          >
+            Editar Prato
+          </Typography>
           <Input
             value={nome}
             onChange={(e) => setNome(e.target.value)}
@@ -135,11 +159,7 @@ const ModalEditProduct = ({ food }) => {
               label="Categoria"
               onChange={(e) => setCategoria(e.target.value)}
               value={categoria}
-              options={[
-                { id: 1, name: "Lanche" },
-                { id: 2, name: "Sobremesa" },
-                { id: 3, name: "Padaria" },
-              ]}
+              options={categories}
             />
           </div>
 
@@ -161,7 +181,7 @@ const ModalEditProduct = ({ food }) => {
               label="Disponivel"
               style={{ width: "70px" }}
               onChange={(e) => setDisponivel(e.target.checked)}
-              value={disponivel}
+              checked={disponivel}
             />
           </div>
 
