@@ -1,18 +1,9 @@
 import React from "react";
 import { Container } from "./style";
+import bg from "../../assets/img/logo.png";
 
 const Banner = () => {
-  return (
-    <Container className="hero">
-      <div className="container text-center hero-content">
-        <div className="row justify-content-center">
-          <div className="col-md-8">
-            <h1>Cardápio</h1>
-          </div>
-        </div>
-      </div>
-    </Container>
-  );
+  return <Container />;
 };
 
 export default Banner;

@@ -1,5 +1,4 @@
 import React from "react";
-import data from "../../fakeData/services";
 import { ServiceContainer } from "../styles/StyleService";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { useState } from "react";
@@ -16,7 +15,7 @@ const Service = () => {
         <p>El Diablo’s cook top </p>
       </div>
       <div className="row align-items-center">
-        {data.map((info, index) => {
+        {[].map((info, index) => {
           return (
             <div className="col-lg-4" key={info.id}>
               <div className="service-box">

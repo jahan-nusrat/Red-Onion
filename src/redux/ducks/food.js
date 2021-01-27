@@ -62,7 +62,7 @@ export default function foodsAction(state = INITIAL_STATE, action) {
     case Types.READ_FOOD_REQUEST:
       return {
         ...state,
-        loading: false,
+        loading: true,
       };
 
     case Types.READ_FOOD_SUCCESS:
@@ -88,6 +88,13 @@ export default function foodsAction(state = INITIAL_STATE, action) {
       return {
         ...state,
         foods: [...state.foods, action.payload.food],
+        loading: false,
+      };
+
+    case Types.CREATE_FOOD_REQUEST:
+      return {
+        ...state,
+        loading: true,
       };
 
     case Types.DELETE_FOOD_SUCCESS:

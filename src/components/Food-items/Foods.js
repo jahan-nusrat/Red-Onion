@@ -2,92 +2,101 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+
+import Skeleton from "@material-ui/lab/Skeleton";
+
 import { BtnStyle } from "../styles/StyleFoods";
 import Menu from "./Menu";
+
 import { Creators as ActionsFood } from "../../redux/ducks/food";
+import { Creators as ActionCategories } from "../../redux/ducks/categories";
+
+import Slider from "react-slick";
 
 const Foods = () => {
-  const history = useHistory();
-  const cartFoods = useSelector((state) => state);
   const food = useSelector(({ food }) => food.foods);
+  const loading_food = useSelector(({ food }) => food.loading);
   const dispatch = useDispatch();
-  const [item, setItems] = useState({});
-  /*
-  const [showItems, setShowItems] = useState({
-    type: "Breakfast",
-    property: food[0],
-    slug: "breakfast",
-  });
 
-  
+  const [foodFilter, setFoodFilter] = useState([]);
 
-  
-  useEffect(() => {
-    let foods = food.filter((item) => {
-      return item.type === showItems.type;
-    });
-    setItems(foods);
-  }, [showItems.type]);*/
+  const categories = useSelector((state) => state.categorie.categories);
 
-  const handleClick = (event) => {
+  const loading_categories = useSelector((state) => state.categorie.loading);
+
+  const handleClick = (event, id) => {
     let menu = food.filter((item) => {
-      return item.type === event.currentTarget.innerText;
+      return item.category_id === id;
     });
-    /*
-    setShowItems({
-      type: menu[0].type,
-      property: food[menu[0].id],
-      slug: menu[0].slug,
-    });*/
+
+    setFoodFilter(menu);
   };
 
-  const checkoutClick = () => {
-    history.push("/cart");
+  useEffect(() => {
+    if (loading_categories === false && loading_food === false)
+      if (categories.length > 0) {
+        setFoodFilter(
+          food.filter((item) => {
+            return item.category_id === categories[0].id;
+          })
+        );
+      }
+  }, [food, categories, loading_categories, loading_food]);
+
+  var settings = {
+    arrows: false,
+    slidesPerRow: 4,
   };
 
   useEffect(() => {
     dispatch(ActionsFood.readFoodRequest());
+    dispatch(ActionCategories.readCategoriesRequest());
   }, [dispatch]);
 
   return (
     <BtnStyle className="container">
-      <div>
-        {/*
-        <button onClick={handleClick} className="btn mx-3 breakfast">
-          Breakfast
-      </button>*/}
+      <div className={`btn-type text-center `}>
+        {loading_categories === false ? (
+          <Slider {...settings} style={{ height: "50px", marginTop: "50px" }}>
+            {categories.map((categorie) => (
+              <div
+                onClick={(e) => handleClick(e, categorie.id)}
+                style={{ width: "100px", height: "50px", fontSize: "22px" }}
+              >
+                {categorie.name}
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <Skeleton>
+            <div
+              style={{ width: "100px", height: "50px", fontSize: "22px" }}
+            ></div>
+          </Skeleton>
+        )}
       </div>
       <div
         className={`btn-type text-center `}
         style={{ display: "flex", flexDirection: "row", flexFlow: "row wrap" }}
       >
-        {food.map((food) => {
-          return <Menu key={food.id} food={food} slug={item.slug} />;
+        {foodFilter.map((food) => {
+          if (food.disponible) {
+            return (
+              <>
+                {loading_food === false ? (
+                  <Menu key={food.id} food={food} />
+                ) : (
+                  <Skeleton>
+                    <Menu />
+                  </Skeleton>
+                )}
+              </>
+            );
+          }
         })}
-      </div>
-      <div className="checkout">
-        <button onClick={checkoutClick} className="btn checkout-btn">
-          Checkout Your Food
-        </button>
       </div>
     </BtnStyle>
   );
 };
 
 export default Foods;
-
-/*
-className={`row active-item-${showItems.property.id}`} -> dentro a div do food
-
-className={`btn-type text-center active-${showItems.property.id}`} --> div dos buttons
-
-<button onClick={handleClick} className="btn mx-3 lunch">
-          Lunch
-        </button>
-        <button onClick={handleClick} className="btn mx-3 dinner">
-          Dinner
-        </button>
-
-
-*/

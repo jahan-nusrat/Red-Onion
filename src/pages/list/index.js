@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Menu from "../menu";
 
+import PaginationList from "react-pagination-list";
+
 import IconButton from "../../components/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import { Creators as ActionsFood } from "../../redux/ducks/food";
@@ -63,6 +65,7 @@ const List = () => {
 
           <IconButton Component={AddIcon} onClick={() => handleOpen()} />
         </div>
+
         <div
           style={{
             display: "flex",
@@ -70,9 +73,15 @@ const List = () => {
             marginTop: "30px",
           }}
         >
-          {foods.map((food) => {
-            return <Menu key={food.id} food={food} slug={foods[0]?.slug} />;
-          })}
+          {loading === false ? (
+            <>
+              {foods.map((food) => {
+                return <Menu key={food.id} food={food} slug={foods[0]?.slug} />;
+              })}
+            </>
+          ) : (
+            <>Loading</>
+          )}
         </div>
       </div>
     </>
