@@ -1,5 +1,6 @@
 {
   "name": "all-file",
+  "homepage": "http://54.82.68.184:3333",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
