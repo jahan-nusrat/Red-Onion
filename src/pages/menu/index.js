@@ -44,7 +44,7 @@ const Menu = ({ food, slug }) => {
             <h5 className="card-title">{name}</h5>
             <p className="card-text">{title}</p>
             <h4 style={{ marginTop: "10px" }}>
-              <strong>R$ {price}</strong>
+              <strong>R${price}</strong>
             </h4>
           </div>
         </div>

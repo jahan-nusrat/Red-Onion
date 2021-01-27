@@ -5,7 +5,7 @@ import MaterialTable from "material-table";
 import { useSelector, useDispatch } from "react-redux";
 import { Creators as CreatorsUser } from "../../../redux/ducks/user";
 
-const List = () => {
+const ListUsers = () => {
     /**
      * verificar porque o state de listagem de usuario nao estar sendo achado
      */
@@ -51,4 +51,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default ListUsers;
