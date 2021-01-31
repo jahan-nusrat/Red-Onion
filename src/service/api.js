@@ -1,8 +1,6 @@
 import axios from "axios";
 import { store } from "../redux/store";
 
-const local = "http://127.0.0.1:3333";
-
 const remote = "https://www.belopao.com";
 
 
